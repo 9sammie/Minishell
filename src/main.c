@@ -1,20 +1,5 @@
 #include "../header/minishell.h"
 
-int execution(char **commands, char **io_put);
-{
-    /*en gros un pipex*/
-}
-// void    data_init(t_data *data)
-// {
-//     t_cmds   cmds; // chaque éléments de la ligne regroupés par séries de cmd simples
-//     t_io     io; // tableau avec le in, le out si redirection (pipe, infile outfile)
-//     t_env    env; //recuperer l'env
-
-//     data->cmds = cmds;
-//     data->env = env;
-//     data->io = io;
-// }
-
 static void data_init(t_data *data)
 {
     data->ls_cmds.cmds = NULL;
@@ -39,14 +24,19 @@ int main(void)
 		if (prompt_line /*l'utilisateur a ecrit quelque chose*/)
 		{
             add_history(prompt_line);
-            parsing(prompte_line, &data);
-			if (!tokens) 
+            parsing(prompt_line, &data);
+			if (!data.ls_cmds.cmds) 
 			{
 				/*fail (et exit proprement ?)*/
                 free_all(prompt_line);
 				return (ERR_CREAT);
 			}
-            execution(prompt_line, io_put);
+            if (execution(prompt_line, &data) == -1)
+            {
+                /*fail (et exit proprement ?)*/
+                free_all(prompt_line);
+                return (ERR_EXEC);
+            }
 		}
 	}
 	return (0);

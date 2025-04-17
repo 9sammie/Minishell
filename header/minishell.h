@@ -69,8 +69,8 @@ typedef struct s_boolean
 }           t_boolean;
 
 /*parsing.c*/
-char ***parsing(char *prompt_line, t_data *data);
+void parsing(char *prompt_line, t_data *data);
 /*execution*/
-int execution(char **commands, char **io_put);
+int execution(char **commands, t_data *data);
 
 #endif

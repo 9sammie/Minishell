@@ -1,58 +1,5 @@
 #include "../header/minishell.h"
 
-int identify_tokens(char **commands)
-{
-	/*
-	REGARDER UN PAR UN LES MOTS ET LES TRAITER AU FUR ET A MESURE
-	- checker s'il y des ' ou ", auquel cas verifier si elles sont fermées
-	- checker s'il y a des \ 
-	- checker s'il y a des |
-	- checker s'il y a des <, >, <<, >>
-	- checker ;
-	- checker $
-	- checker $?
-	*/
-	return (1);
-}
-
-char	**check_quotes(char *prompt_line, char **io_put)
-{
-	int     i;
-	bool    is_in_simple_quotes;
-	bool    is_in_double_quotes;
-	
-	i = 0;
-	is_in_simple_quotes = false;
-	while (prompt_line[i])
-	{
-		if (prompt_line[i] == '\'')
-		{
-			if (!is_in_simple_quotes)
-				is_in_simple_quotes = true;
-			else
-				is_in_simple_quotes = false;
-
-		}
-		if (prompt_line[i] == '\"')
-		{
-			if (!is_in_double_quotes)
-				is_in_double_quotes = true;
-			else
-				is_in_double_quotes = false;
-		}
-		if (/*on tombe sur un operator*/)
-		{
-			if (is_in_double_quotes == false && is_in_simple_quotes == false)
-				/*il faut reorienter en modifiant io_put*/
-		}
-		i++;
-	}
-	if (is_in_double_quotes || is_in_simple_quotes)
-	{
-		/*syntax error*/
-	}
-}
-
 void    identify_simple_cmds(char *prompt_line, t_data *data)
 {
     int word_length;
@@ -87,17 +34,16 @@ void    identify_simple_cmds(char *prompt_line, t_data *data)
         i++;
     }
 }
-t_cmds parsing(char *prompt_line, t_data *data);
+t_cmds parsing(char *prompt_line, t_data *data)
 {
 	char    ***tokens;
 	char    **simple_cmd;
 	/*separer tokens en les words des operators*/
-	identify_simple_cmds(prompt_line);
+	identify_simple_cmds(prompt_line, data);
 	/*separer les words en arguments des cmd*/
 	identify_words();
 	/*stocker les $VAR*/
 	stock_var();
 	/*remplacer les $VAR, (alias et wildcards) par ce qu'ils veulent litteralement dire*/
 	replace_var();
-	return (tokens);
 }

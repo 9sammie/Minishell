@@ -29,22 +29,23 @@ typedef enum e_error
 	ALL_OK,
 	ERR_CREAT,
 	ERR_ID,
-	ERR_EXEC
+	ERR_EXEC,
+    ERR_PIPE
 }	t_error;
+
+typedef struct s_io
+{
+    char    io[2];
+    void    *next;
+}           t_io;
 
 typedef struct s_cmds
 {
     int     index;
     char    **cmds;
+    t_io    io;
     void    *next;
 }           t_cmds;
-
-typedef struct s_io
-{
-    int     index;
-    char    io[2];
-    void    *next;
-}           t_io;
 
 typedef struct s_env
 {
@@ -72,5 +73,8 @@ typedef struct s_boolean
 void parsing(char *prompt_line, t_data *data);
 /*execution*/
 int execution(char **commands, t_data *data);
-
+/*manage_pipe*/
+void    manage_pipe(char *prompt_line, t_boolean *booleans, t_data *data);
+/*manage_dollar.c*/
+int manage_dollar(char *prompt_line, t_boolean *booleans, t_data *data, int *i);
 #endif

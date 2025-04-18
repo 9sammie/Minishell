@@ -8,7 +8,8 @@ int    manage_pipe(char *prompt_line, int *i, t_boolean *booleans, t_data *data)
     t_data  *last;
     t_cmds  *next_cmd;
     if (booleans->simple_quote || booleans->double_quote)
-        return ;
+        return (ALL_OK);
+    /*save word*/
     last = ft_lstlast(data);
     last->ls_io.io[1] = ft_strdup("pipe");
     if (last->ls_io.io[1])

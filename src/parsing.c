@@ -21,18 +21,19 @@ void    identify_simple_cmds(char *prompt_line, t_data *data)
             manage_pipe(prompt_line, &booleans, data); 
             //termine le node actuel, crée un nouveau node, met a jour le input et le output suivant (pipe)
         if (prompt_line[i] == '>')
-            manage_right_rafter(prompt_line, &i, booleans);
+            manage_right_rafter(prompt_line, &i, &booleans, data, word_length);
             //bool pour savoir si c'est > ou >> SINON error syntax. chercher ' ' ou ' " ' suivant pour delimiter le fd outfile
         if (prompt_line[i] == '<')
-            manage_left_rafter(prompt_line, &i, booleans);
+            manage_left_rafter(prompt_line, &i, &booleans, data, word_length);
             //bool pour savoir si c'est > ou >> SINON error syntax. chercher ' ' ou ' " ' suivant pour delimiter le fd infile
         if (prompt_line[i] == '$')
-            manage_dollar(prompt_line, &booleans, data, &i); 
+            manage_dollar(prompt_line, &booleans, data, &i, &word_length); 
             //si simple quote : RIEN, sinon chercher ' ' ou ' " ' suivant pour delimiter la $VAR
-        if (is_space(prompt_line[i]))
-            save_word(word_length, prompt_line, &i, data);
+        if (is_space(prompt_line[i]) && !booleans.simple_quote && !booleans.double_quote)
+            save_word(word_length, prompt_line, &i, data, &booleans);
             //enregistrer le mot qu'on vient de lire et passer au mot suivant dans le char **cmds
-        word_length++;
+        else
+            word_length++;
         i++;
     }
 }
@@ -42,10 +43,10 @@ t_cmds parsing(char *prompt_line, t_data *data)
 	char    **simple_cmd;
 	/*separer tokens en les words des operators*/
 	identify_simple_cmds(prompt_line, data);
-	/*separer les words en arguments des cmd*/
+	/*separer les words en arguments des cmd (en dehors des files)*/
 	identify_words();
 	/*stocker les $VAR*/
 	stock_var();
-	/*remplacer les $VAR, (alias et wildcards) par ce qu'ils veulent litteralement dire*/
+	/*remplacer les $VAR par ce qu'ils veulent litteralement dire*/
 	replace_var();
 }

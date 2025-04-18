@@ -30,7 +30,8 @@ typedef enum e_error
 	ERR_CREAT,
 	ERR_ID,
 	ERR_EXEC,
-    ERR_PIPE
+    ERR_PIPE,
+    ERR_RAFT
 }	t_error;
 
 typedef struct s_io
@@ -64,8 +65,10 @@ typedef struct s_boolean
 {
     bool    simple_quote;
     bool    double_quote;
-    bool    simple_rafter;
-    bool    double_rafter;
+    bool    simple_right_rafter;
+    bool    double_right_rafter;
+    bool    simple_left_rafter;
+    bool    double_left_rafter;
     bool    dollar;
 }           t_boolean;
 
@@ -76,5 +79,10 @@ int execution(char **commands, t_data *data);
 /*manage_pipe*/
 void    manage_pipe(char *prompt_line, t_boolean *booleans, t_data *data);
 /*manage_dollar.c*/
-int manage_dollar(char *prompt_line, t_boolean *booleans, t_data *data, int *i);
+int manage_dollar(char *prompt_line, t_boolean *booleans, t_data *data, int *i, int *word_length);
+/*is_space.c*/
+bool is_space(char c);
+/*manage_rafters.c*/
+int manage_right_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length);
+int manage_left_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length);
 #endif

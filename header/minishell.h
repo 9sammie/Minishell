@@ -29,7 +29,8 @@ typedef enum e_error
 	ALL_OK,
 	ERR_CREAT,
 	ERR_ID,
-	ERR_EXEC
+	ERR_EXEC,
+    ERR_RAF
 }	t_error;
 
 typedef struct s_cmds
@@ -59,18 +60,20 @@ typedef struct  s_data
     t_env   ls_env;
 }           t_data;
 
-typedef struct s_boolean
+typedef struct s_is_active
 {
     bool    simple_quote;
     bool    double_quote;
     bool    simple_rafter;
     bool    double_rafter;
     bool    dollar;
-}           t_boolean;
+}           t_is_active;
 
 /*parsing.c*/
-void parsing(char *prompt_line, t_data *data);
+void    parsing(char *prompt_line, t_data *data);
+void	manage_right_rafter(char *prompt_line, t_is_active *is_active);
 /*execution*/
-int execution(char **commands, t_data *data);
+int     execution(char **commands, t_data *data);
+
 
 #endif

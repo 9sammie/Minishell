@@ -3,31 +3,31 @@
 void    identify_simple_cmds(char *prompt_line, t_data *data)
 {
     int         word_length;
-    t_boolean   booleans;
+    t_is_active is_active;
     int         i;
     
-    booleans_init(booleans);
+    booleans_init(is_active);
     i = 0;
     word_length = 0;
     while (prompt_line[i])
     {
         if (prompt_line[i] == '\'')
-            manage_single_quote(prompt_line, &i, booleans);
+            manage_single_quote(prompt_line, &i, is_active);
             // boolen = true ou false
         if (prompt_line[i] == '\"')
-            manage_double_quote(prompt_line, &i, booleans);
+            manage_double_quote(prompt_line, &i, is_active);
             // boolen = true ou false
         if (prompt_line[i] == '|') 
             manage_pipe(prompt_line, &i); 
             //termine le node actuel, crée un nouveau node, met a jour le input et le output suivant (pipe)
         if (prompt_line[i] == '>')
-            manage_right_rafter(prompt_line, &i, booleans);
+            manage_right_rafter(prompt_line, &is_active);
             //bool pour savoir si c'est > ou >> SINON error syntax. chercher ' ' ou ' " ' suivant pour delimiter le fd outfile
         if (prompt_line[i] == '<')
-            manage_left_rafter(prompt_line, &i, booleans);
+            manage_left_rafter(prompt_line, &is_active);
             //bool pour savoir si c'est > ou >> SINON error syntax. chercher ' ' ou ' " ' suivant pour delimiter le fd infile
         if (prompt_line[i] == '$')
-            manage_dollar(prompt_line, &i, booleans); 
+            manage_dollar(prompt_line, &i, is_active); 
             //si simple quote : RIEN, sinon chercher ' ' ou ' " ' suivant pour delimiter la $VAR
         if (is_space(prompt_line[i]))
             save_word(word_length, prompt_line, i, data);

@@ -13,7 +13,7 @@ void    identify_simple_cmds(char *prompt_line, t_data *data)
     {
         if (prompt_line[i] == '\'')
             manage_single_quote(prompt_line, &i, booleans);
-            // boolen = true ou false
+            // boolen = true ou false 
         if (prompt_line[i] == '\"')
             manage_double_quote(prompt_line, booleans);
             // boolen = true ou false
@@ -36,6 +36,7 @@ void    identify_simple_cmds(char *prompt_line, t_data *data)
             word_length++;
         i++;
     }
+    /*il faut enregistrer le dernier mot a ce moment la*/
 }
 t_cmds parsing(char *prompt_line, t_data *data)
 {

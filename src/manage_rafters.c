@@ -12,6 +12,7 @@ int manage_right_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *
 		booleans->simple_right_rafter = true;
 	else if (booleans->simple_right_rafter == true) // deuxieme chevron
 		booleans->double_right_rafter = true;
+	word_length--;
 	return (ALL_OK);
 }
 int manage_left_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length)
@@ -26,6 +27,7 @@ int manage_left_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *d
 		booleans->simple_left_rafter = true;
 	else if (booleans->simple_left_rafter == true) // deuxieme chevron
 		booleans->double_left_rafter = true;
+	word_length--;
 	return (ALL_OK);
 }
 

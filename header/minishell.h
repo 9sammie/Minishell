@@ -31,7 +31,8 @@ typedef enum e_error
 	ERR_ID,
 	ERR_EXEC,
     ERR_PIPE,
-    ERR_RAFT
+    ERR_RAFT,
+    ERR_MALLOC
 }	t_error;
 
 typedef struct s_io

@@ -3,7 +3,7 @@
 //termine le node actuel
 //crée un nouveau node
 //met a jour le input et le output suivant (pipe)
-int    manage_pipe(char *prompt_line, int *i, t_boolean *booleans, t_data *data)
+int    manage_pipe(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length)
 {
     t_data  *last;
     t_cmds  *next_cmd;
@@ -30,5 +30,6 @@ int    manage_pipe(char *prompt_line, int *i, t_boolean *booleans, t_data *data)
         /*fail*/
         return (ERR_PIPE);
     }
+    word_length--;
     return (ALL_OK);
 }

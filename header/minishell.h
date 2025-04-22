@@ -37,7 +37,7 @@ typedef enum e_error
 
 typedef struct s_io
 {
-    char    io[2];
+    char    *io[4];
     void    *next;
 }           t_io;
 

@@ -74,7 +74,7 @@ typedef struct s_boolean
 }           t_boolean;
 
 /*parsing.c*/
-void parsing(char *prompt_line, t_data *data);
+t_cmds parsing(char *prompt_line, t_data *data);
 /*execution*/
 int execution(char **commands, t_data *data);
 /*manage_pipe*/

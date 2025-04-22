@@ -42,7 +42,8 @@ t_cmds parsing(char *prompt_line, t_data *data)
 {
 	char    ***tokens;
 	char    **simple_cmd;
-	/*separer tokens en les words des operators*/
+
+	/*distinguer tokens en les words et les operators*/
 	identify_simple_cmds(prompt_line, data);
 	/*separer les words en arguments des cmd (en dehors des files)*/
 	identify_words();

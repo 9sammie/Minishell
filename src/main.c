@@ -13,7 +13,7 @@ int main(void)
 		if (prompt_line /*l'utilisateur a ecrit quelque chose*/)
 		{
             add_history(prompt_line);
-            parsing(prompt_line, &data);
+            data.ls_cmds = parsing(prompt_line, &data);
 			if (!data.ls_cmds.cmds) 
 			{
 				/*fail (et exit proprement ?)*/

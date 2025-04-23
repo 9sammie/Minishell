@@ -94,4 +94,7 @@ int save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_boole
 /*manage_rafters.c*/
 int manage_right_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length);
 int manage_left_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length);
+/*utils/utils00.c*/
+char	*ft_cutstr(char const *s, unsigned int start);
+
 #endif

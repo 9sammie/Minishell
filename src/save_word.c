@@ -62,25 +62,6 @@ int save_word_in_tab(char *new_word, t_data *data, t_boolean *booleans)
 	}
 }
 
-static char	*ft_cutstr(char const *s, unsigned int start)
-{
-	char	*result;
-	size_t	i;
-	int		len;
-
-	i = 0;
-	len = ft_strlen(s) - start;
-	result = malloc(len + 1);
-	if (!result)
-		return (NULL);
-	while (i < len)
-	{
-		result[i] = s[start + i];
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
-}
 
 char	*find_var_in_env(t_env *env, char *var, int var_len)
 {
@@ -88,7 +69,9 @@ char	*find_var_in_env(t_env *env, char *var, int var_len)
 	{
 		if (!ft_strncmp(env->env_line, var, var_len) && env->env_line[var_len + 1] == '=')
 			return (env->env_line);
+		env = env->next;
 	}
+	return (NULL);
 }
 
 char *replace_variable(char *new_word, t_data *data)
@@ -99,15 +82,15 @@ char *replace_variable(char *new_word, t_data *data)
 
 	var = ft_strtrim(new_word, '$');
 	if (!var)
-		return (NULL);
+		return (NULL); //fail malloc
 	free(new_word);
 
 	env_var = find_var_in_env(&data->ls_env, var, ft_strlen(var));
 	if (!env_var)
-		return (NULL);
+		return (NULL); //si la variable existe pas c'est = NULL mais c'est pas un fail
 	result = ft_cutstr(env_var, ft_stlren(var) + 1);
 	if (!result)
-		return (NULL);
+		return (NULL); //fail malloc
 	free(var);
 	return (result);
 }

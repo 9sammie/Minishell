@@ -1,12 +1,12 @@
 #include "../header/minishell.h"
 
-int main(void)
+int main(char **env)
 {
 	char     *prompt_line; //la ligne de prompt a recuperer si le signal est enter
 
     t_data  data; // contient toutes les struct
 
-    data_init(&data);
+    data_init(&data, env);
 	while (1) // boucle qui maintient le programme ouvert
 	{
         prompt_line = readline("minishell > "); //recupere la ligne dans le prompt

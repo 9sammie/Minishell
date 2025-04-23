@@ -30,47 +30,53 @@ typedef enum e_error
 	ERR_CREAT,
 	ERR_ID,
 	ERR_EXEC,
-    ERR_PIPE,
-    ERR_RAFT,
-    ERR_MALLOC
+	ERR_PIPE,
+	ERR_RAFT,
+	ERR_MALLOC
 }	t_error;
 
 typedef struct s_io
 {
-    char    *io[4];
-    void    *next;
-}           t_io;
+	char            *io[4];
+	struct s_io     *next;
+}                   t_io;
+
+typedef struct s_token_cmds
+{
+    char                    *token_cmd;
+    struct s_token_cmds     *next;
+}                           t_token_cmds;
 
 typedef struct s_cmds
 {
-    int     index;
-    char    **cmds;
-    t_io    io;
-    void    *next;
-}           t_cmds;
+	int             index;
+	t_token_cmds    *s_token_cmds;
+	t_io            *io;
+	struct s_cmds   *next;
+}                   t_cmds;
 
 typedef struct s_env
 {
-    char    *env_line;
-    void    *next;
-}           t_env;
+	char            *env_line;
+	struct s_env    *next;
+}                   t_env;
 
 typedef struct  s_data
 {
-    t_cmds  ls_cmds;
-    t_io    ls_io;
-    t_env   ls_env;
+	t_cmds  ls_cmds;
+	t_io    ls_io;
+	t_env   ls_env;
 }           t_data;
 
 typedef struct s_boolean
 {
-    bool    simple_quote;
-    bool    double_quote;
-    bool    simple_right_rafter;
-    bool    double_right_rafter;
-    bool    simple_left_rafter;
-    bool    double_left_rafter;
-    bool    dollar;
+	bool    simple_quote;
+	bool    double_quote;
+	bool    simple_right_rafter;
+	bool    double_right_rafter;
+	bool    simple_left_rafter;
+	bool    double_left_rafter;
+	bool    dollar;
 }           t_boolean;
 
 /*parsing.c*/
@@ -83,6 +89,8 @@ void    manage_pipe(char *prompt_line, t_boolean *booleans, t_data *data);
 int manage_dollar(char *prompt_line, t_boolean *booleans, t_data *data, int *i, int *word_length);
 /*is_space.c*/
 bool is_space(char c);
+/*save_word.c*/
+int save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_boolean *booleans);
 /*manage_rafters.c*/
 int manage_right_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length);
 int manage_left_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length);

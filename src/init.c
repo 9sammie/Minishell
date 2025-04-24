@@ -1,4 +1,4 @@
-#include "../header/minishell.h"
+#include "../../header/minishell.h"
 
 static int  env_init(t_env *ls_env, char **env)
 {
@@ -17,14 +17,15 @@ static int  env_init(t_env *ls_env, char **env)
 	return (1);
 } 
 
-void data_init(t_data *data, char **env)
+t_data data_init(t_data *data, char **env)
 {
-	data->ls_cmds.cmds = NULL;
-	data->ls_cmds.index = 0;
-	data->ls_cmds.next = NULL;
+	data->ls_cmds->s_token_cmds = NULL;
+	data->ls_cmds->index = 0;
+	data->ls_cmds->next = NULL;
 	env_init(&data->ls_env, env);
 
-	data->ls_io.next = NULL;
+	data->ls_io->next = NULL;
+    return (data);
 }
 
 void    booleans_init(t_boolean *booleans)
@@ -36,4 +37,13 @@ void    booleans_init(t_boolean *booleans)
 	booleans->simple_right_rafter = false;
 	booleans->double_quote = false;
 	booleans->simple_quote = false;
+}
+
+void    init_back_bool(t_boolean *booleans)
+{
+    booleans->dollar = false;
+	booleans->double_left_rafter = false;
+	booleans->double_right_rafter = false;
+	booleans->simple_left_rafter = false;
+	booleans->simple_right_rafter = false;
 }

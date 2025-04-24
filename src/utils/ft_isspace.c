@@ -1,6 +1,6 @@
-#include "../header/minishell.h"
+#include "../../header/minishell.h"
 
-bool is_space(char c)
+bool ft_isspace(char c)
 {
     if (c == ' ')
         return (true);

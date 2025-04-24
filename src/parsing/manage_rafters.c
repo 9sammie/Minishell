@@ -1,4 +1,4 @@
-#include "../header/minishell.h"
+#include "../../header/minishell.h"
 
 int manage_right_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length)
 {

@@ -1,4 +1,4 @@
-#include "../header/minishell.h"
+#include "../../header/minishell.h"
 
 //si simple quote : RIEN, sinon chercher ' ' ou ' " ' suivant pour delimiter la $VAR
 int manage_dollar(char *prompt_line, t_boolean *booleans, t_data *data, int *i, int *word_length)

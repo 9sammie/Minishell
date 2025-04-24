@@ -1,4 +1,4 @@
-#include "../header/minishell.h"
+#include "../../header/minishell.h"
 
 //enregistrer le mot qu'on vient de lire et passer au mot suivant dans le char **cmds
 // on lui envoie l'index et la taille du mot
@@ -34,7 +34,7 @@ static char	*substr_no_quotes(char *prompt_line, int start, int new_len, int len
 	return (result);
 }
 
-int save_word_in_tab(char *new_word, t_data *data, t_boolean *booleans)
+void save_word_in_tab(char *new_word, t_data *data, t_boolean *booleans)
 {
 	t_token_cmds    new_token_cmd;
 
@@ -137,6 +137,7 @@ int save_word(int word_length, char *prompt_line, int *i, t_data *data, t_boolea
 	if (booleans->dollar)
 		new_word = replace_variable(new_word, data);
 	/*enregistrer new_word dans la structure file ou cmd*/
-	if (save_word_in_tab(new_word, data, booleans))
+	save_word_in_tab(new_word, data, booleans);
+    init_back_bool(booleans);
 		return (0);
 }

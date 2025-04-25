@@ -6,7 +6,7 @@
 /*   By: abarzila <abarzila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:32:14 by abarzila          #+#    #+#             */
-/*   Updated: 2024/11/20 10:40:15 by abarzila         ###   ########.fr       */
+/*   Updated: 2025/04/23 10:14:34 by abarzila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
+    t_list  *last;
+
 	if (!lst)
 		return (NULL);
-	while (lst->next)
+    last = lst;
+	while (last->next)
 	{
-		lst = lst->next;
+		last = last->next;
 	}
-	return (lst);
+	return (last);
 }

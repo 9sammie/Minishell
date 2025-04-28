@@ -9,17 +9,19 @@
 static char	*substr_no_quotes(char *prompt_line, int start, int new_len, int len, char skip)
 { //LA LEN EST PAS TOUT A FAIT BONNE POUR PARCOURIR PROMPTLINE
 	char	*result;
-	size_t	i;
+	int	i;
+    int p_line_len;
 
-	i = 0;
-	if (start > ft_strlen(prompt_line))
-		len = 0;
-	else if (len > (ft_strlen(prompt_line) - start))
-		len = ft_strlen(prompt_line) - start;
+    p_line_len = (int)ft_strlen(prompt_line);
+	if (start > p_line_len)
+        len = 0;
+	else if (len > (p_line_len - start))
+        len = p_line_len - start;
 	result = malloc(new_len + 1);
 	if (!result)
-		return (NULL);
-	while (i < len && (start + i < ft_strlen(prompt_line))) // a optimiser
+        return (NULL);
+	i = 0;
+	while (i < len && (start + i < p_line_len)) // a optimiser
 	{
 		if (prompt_line[start + i] == '\\' && (prompt_line[start + i + 1] == skip || prompt_line[start + i + 1] == '\\'))
 		{ // si on tombe sur un \, alors on check si le suivant est une quote ou un autre \. sinon on s'en fiche
@@ -34,7 +36,7 @@ static char	*substr_no_quotes(char *prompt_line, int start, int new_len, int len
 	return (result);
 }
 
-void save_word_in_tab(char *new_word, t_data *data, t_boolean *booleans)
+void save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 {
 	t_token_cmds    new_token_cmd;
 
@@ -58,7 +60,7 @@ void save_word_in_tab(char *new_word, t_data *data, t_boolean *booleans)
 	{
 		new_token_cmd.token_cmd = new_word; 
 		new_token_cmd.next = NULL; 
-		ft_lstadd_back(&(data->ls_cmds->s_token_cmds), &new_token_cmd);
+		ft_lstadd_back((t_list**)&data->ls_cmds->s_token_cmds, (t_list*)&new_token_cmd);
 	}
 }
 
@@ -80,22 +82,22 @@ char *replace_variable(char *new_word, t_data *data)
 	char	*result;
 	char	*env_var;
 
-	var = ft_strtrim(new_word, '$');
+	var = ft_strtrim(new_word, "$");
 	if (!var)
 		return (NULL); //fail malloc
 	free(new_word);
 
-	env_var = find_var_in_env(&data->ls_env, var, ft_strlen(var));
+	env_var = find_var_in_env(data->ls_env, var, ft_strlen(var));
 	if (!env_var)
 		return (NULL); //si la variable existe pas c'est = NULL mais c'est pas un fail
-	result = ft_cutstr(env_var, ft_stlren(var) + 1);
+	result = ft_cutstr(env_var, ft_strlen(var) + 1);
 	if (!result)
 		return (NULL); //fail malloc
 	free(var);
 	return (result);
 }
 
-int save_word(int word_length, char *prompt_line, int *i, t_data *data, t_boolean *booleans)
+int save_word(int word_length, char *prompt_line, int *i, t_data *data, t_is_active *booleans)
 {
 	char    *new_word;
 	int     index;

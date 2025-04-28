@@ -6,13 +6,13 @@
 #    By: abarzila <abarzila@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/04 13:44:29 by abarzila          #+#    #+#              #
-#    Updated: 2025/03/03 11:16:26 by abarzila         ###   ########.fr        #
+#    Updated: 2025/04/28 16:55:13 by abarzila         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft.a
 CC	=	cc
-CFLAG	=	-Wall -Wextra -Werror
+CFLAG	=	-Wall -Wextra -Werror -g
 INC		=	libft.h\
 			get_next_line.h
 

@@ -12,6 +12,9 @@ CC			=	cc
 #					DIRECTORY						#
 #####################################################
 DIR_SRC			=	src
+DIR_EXEC        =   execution
+DIR_PARS        =   parsing
+DIR_UTILS       =   utils
 DIR_OBJ			=	obj
 DIR_HEADER		=	header
 DIR_LIBFT		=	libft
@@ -26,6 +29,20 @@ LFLAGS		=	-lreadline -lncurses
 #					FILES							#
 #####################################################
 FILES		=	main.c\
+                init.c\
+                $(DIR_EXEC)/$(FILES_EXEC)\
+                $(DIR_PARS)/$(FILES_PARS)\
+                $(DIR_UTILS)/$(FILES_UTILS)
+
+FILES_EXEC  =   execution.c
+FILES_PARS  =   parsing.c\
+                manage_dollar.c\
+                manage_pipe.c\
+                manage_quotes.c\
+                manage_rafters.c\
+                save_word.c
+FILES_UTILS =   ft_isspace.c\
+                utils00.c
 				
 HEADERS		=	minishell.h
 SRC			=	$(DIR_SRC)/$(FILES)

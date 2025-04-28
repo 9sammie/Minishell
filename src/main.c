@@ -5,7 +5,7 @@ int main(char **env)
 	char     *prompt_line; //la ligne de prompt a recuperer si le signal est enter
 
     t_data  data; // contient toutes les struct
-    t_data  data_start;
+    t_data  data_start; // sauvegarde le point de depart
 
     data_start = data_init(&data, env);
 	while (1) // boucle qui maintient le programme ouvert

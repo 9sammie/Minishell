@@ -30,9 +30,9 @@ LFLAGS		=	-lreadline -lncurses
 #####################################################
 FILES		=	main.c\
                 init.c\
-                $(DIR_EXEC)/$(FILES_EXEC)\
                 $(DIR_PARS)/$(FILES_PARS)\
                 $(DIR_UTILS)/$(FILES_UTILS)
+                # $(DIR_EXEC)/$(FILES_EXEC)
 
 FILES_EXEC  =   execution.c
 FILES_PARS  =   parsing.c\
@@ -44,9 +44,9 @@ FILES_PARS  =   parsing.c\
 FILES_UTILS =   ft_isspace.c\
                 utils00.c
 				
-HEADERS		=	minishell.h
+FILE_HEADER	=	minishell.h
 SRC			=	$(DIR_SRC)/$(FILES)
-HEADERS		=	$(DIR_HEADER)/$(HEADERS)
+HEADERS		=	$(DIR_HEADER)/$(FILE_HEADER)
 OBJ			=	$(FILES:%.c=$(DIR_OBJ)/%.o)
 
 

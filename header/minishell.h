@@ -26,7 +26,7 @@ typedef struct s_token_cmds	t_token_cmds;
 typedef struct s_cmds		t_cmds;
 typedef struct s_env		t_env;
 typedef struct s_data		t_data;
-typedef struct s_boolean	t_boolean;
+typedef struct s_is_active	t_boolean;
 
 typedef enum e_error
 {

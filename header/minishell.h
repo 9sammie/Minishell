@@ -20,7 +20,6 @@
 # include <term.h> //getent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 
 # include "../libft/libft.h" 
-# include "../pipex/header/pipex.h"
 
 typedef struct s_io			t_io;
 typedef struct s_token_cmds	t_token_cmds;

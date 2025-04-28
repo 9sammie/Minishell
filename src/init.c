@@ -1,4 +1,4 @@
-#include "../../header/minishell.h"
+#include "../header/minishell.h"
 
 static int  env_init(t_env *ls_env, char **env)
 {
@@ -11,7 +11,7 @@ static int  env_init(t_env *ls_env, char **env)
 		new_line_env.env_line = ft_strdup(env[i]);
 		if (!new_line_env.env_line)
 			return (0);
-		ft_lstadd_back(&ls_env, &new_line_env);
+		ft_lstadd_back((t_list**)&ls_env, (t_list*)&new_line_env);
 		i++;
 	}
 	return (1);
@@ -22,7 +22,7 @@ t_data data_init(t_data *data, char **env)
 	data->ls_cmds->s_token_cmds = NULL;
 	data->ls_cmds->index = 0;
 	data->ls_cmds->next = NULL;
-	env_init(&data->ls_env, env);
+	env_init(data->ls_env, env);
 
 	data->ls_io->next = NULL;
     return (*data);

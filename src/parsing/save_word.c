@@ -95,7 +95,7 @@ char *replace_variable(char *new_word, t_data *data)
 	return (result);
 }
 
-int save_word(int word_length, char *prompt_line, int *i, t_data *data, t_boolean *booleans)
+int save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_boolean *booleans)
 {
 	char    *new_word;
 	int     index;
@@ -103,9 +103,9 @@ int save_word(int word_length, char *prompt_line, int *i, t_data *data, t_boolea
 	int     start;
 	int		new_wl;
 
-	new_wl = word_length;
+	new_wl = *word_length;
 	skip = '\0';
-	index = *i - word_length;
+	index = *i - *word_length;
 	start = index;
 	while (index <= *i)
 	{
@@ -139,5 +139,6 @@ int save_word(int word_length, char *prompt_line, int *i, t_data *data, t_boolea
 	/*enregistrer new_word dans la structure file ou cmd*/
 	save_word_in_tab(new_word, data, booleans);
     init_back_bool(booleans);
-		return (0);
+	*word_length = 0; //Remettre word_len a 0 pour le prochain mot.
+	return (0);
 }

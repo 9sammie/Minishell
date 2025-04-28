@@ -16,6 +16,8 @@ int    manage_pipe(char *prompt_line, int *i, t_boolean *booleans, t_data *data,
     if (booleans->simple_quote || booleans->double_quote)
         return (ALL_OK);
     /*A FAIRE save word*/
+    if (prompt_line[*i - 1] != ' ')
+        save_word(&word_length, &prompt_line, &i, &data, &booleans);
     if (!data->ls_io->io[1])
     {
         data->ls_io->io[1] = ft_strdup("pipe"); //output de l'ancien node

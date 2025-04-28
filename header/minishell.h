@@ -26,7 +26,7 @@ typedef struct s_token_cmds	t_token_cmds;
 typedef struct s_cmds		t_cmds;
 typedef struct s_env		t_env;
 typedef struct s_data		t_data;
-typedef struct s_is_active	t_boolean;
+typedef struct s_is_active	t_is_active;
 
 typedef enum e_error
 {
@@ -81,25 +81,28 @@ typedef struct s_is_active
 	bool	simple_left_rafter;
 	bool	double_left_rafter;
 	bool	dollar;
-}			t_boolean;
+}			t_is_active;
 
 /*ROOT------------------------*/
 /*init.c*/
-void	init_back_bool(t_boolean *booleans);
-void	booleans_init(t_boolean *booleans);
-t_data	data_init(t_data *data, char **env);
+void	init_back_bool(t_is_active *booleans);
+void	booleans_init(t_is_active *booleans);
+void	data_init(t_data *data, char **env);
 /*PARSING---------------------*/
 /*parsing.c*/
-t_cmds	parsing(char *prompt_line, t_data *data);
+void	parsing(char *prompt_line, t_data *data);
 /*manage_pipe*/
-void	manage_pipe(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length);
+int	manage_pipe(char *prompt_line, int *i, t_is_active *booleans, t_data *data, int *word_length);
 /*manage_dollar.c*/
-int		manage_dollar(char *prompt_line, t_boolean *booleans, t_data *data, int *i, int *word_length);
+int		manage_dollar(char *prompt_line, t_is_active *booleans, t_data *data, int *i, int *word_length);
 /*save_word.c*/
-int		save_word(int word_length, char *prompt_line, int *i, t_data *data, t_boolean *booleans);
+int		save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_is_active *booleans);
 /*manage_rafters.c*/
-int		manage_right_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length);
-int		manage_left_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length);
+int		manage_right_rafter(char *prompt_line, int *i, t_is_active *booleans, t_data *data, int *word_length);
+int		manage_left_rafter(char *prompt_line, int *i, t_is_active *booleans, t_data *data, int *word_length);
+/*manage_quotes.c*/
+int    manage_simple_quote(char *promptline, int *i, t_is_active *booleans, t_data *data, int *word_length);
+int    manage_double_quote(char *promptline, int *i, t_is_active *booleans, t_data *data, int *word_length);
 /*EXECUTION------------------------*/
 /*execution*/
 int		execution(t_data *data);

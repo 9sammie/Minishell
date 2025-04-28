@@ -5,11 +5,12 @@ int main(int ac, char **av, char **env)
 	char     *prompt_line; //la ligne de prompt a recuperer si le signal est enter
 
     t_data  data; // contient toutes les struct
-    t_data  data_start; // sauvegarde le point de depart
+    // t_data  data_start; // sauvegarde le point de depart
 
     (void)ac;
     (void)av;
-    data_start = data_init(&data, env);
+    data_init(&data, env);
+    printf("hello\n");
 	while (1) // boucle qui maintient le programme ouvert
 	{
         prompt_line = readline("minishell > "); //recupere la ligne dans le prompt
@@ -23,7 +24,7 @@ int main(int ac, char **av, char **env)
                 // free_all(prompt_line);
 				return (ERR_CREAT); 
 			}
-            data = data_start;
+            // data = data_start;
             // if (execution(&data) == -1)
             // {
             //     /*fail (et exit proprement ?)*/

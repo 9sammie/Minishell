@@ -28,12 +28,6 @@ LFLAGS		=	-lreadline -lncurses
 #####################################################
 #					FILES							#
 #####################################################
-FILES		=	main.c\
-                init.c\
-                $(DIR_PARS)/$(FILES_PARS)\
-                $(DIR_UTILS)/$(FILES_UTILS)
-                # $(DIR_EXEC)/$(FILES_EXEC)
-
 FILES_EXEC  =   execution.c
 FILES_PARS  =   parsing.c\
                 manage_dollar.c\
@@ -44,6 +38,12 @@ FILES_PARS  =   parsing.c\
 FILES_UTILS =   ft_isspace.c\
                 utils00.c
 				
+FILES		=	main.c\
+                init.c\
+                $(addprefix $(DIR_PARS)/,$(FILES_PARS))\
+                $(addprefix $(DIR_UTILS)/, $(FILES_UTILS))
+                # $(DIR_EXEC)/$(FILES_EXEC)
+
 FILE_HEADER	=	minishell.h
 SRC			=	$(DIR_SRC)/$(FILES)
 HEADERS		=	$(DIR_HEADER)/$(FILE_HEADER)
@@ -69,7 +69,9 @@ $(DIR_OBJ)/%.o : $(DIR_SRC)/%.c $(HEADERS) Makefile | $(DIR_OBJ)
 
 $(DIR_OBJ):
 	mkdir -p $(DIR_OBJ)
-
+	mkdir -p $(DIR_OBJ)/$(DIR_EXEC)
+	mkdir -p $(DIR_OBJ)/$(DIR_PARS)
+	mkdir -p $(DIR_OBJ)/$(DIR_UTILS)
 
 re: fclean
 	$(MAKE) all

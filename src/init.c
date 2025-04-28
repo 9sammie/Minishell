@@ -25,7 +25,7 @@ t_data data_init(t_data *data, char **env)
 	env_init(&data->ls_env, env);
 
 	data->ls_io->next = NULL;
-    return (data);
+    return (*data);
 }
 
 void    booleans_init(t_boolean *booleans)

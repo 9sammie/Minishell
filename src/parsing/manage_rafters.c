@@ -15,6 +15,7 @@ int manage_right_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *
 	word_length--;
 	return (ALL_OK);
 }
+
 int manage_left_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length)
 {
 	if (booleans->simple_quote || booleans->double_quote)
@@ -30,4 +31,3 @@ int manage_left_rafter(char *prompt_line, int *i, t_boolean *booleans, t_data *d
 	word_length--;
 	return (ALL_OK);
 }
-

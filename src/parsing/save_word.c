@@ -41,24 +41,24 @@ void save_word_in_tab(char *new_word, t_data *data, t_boolean *booleans)
 	/*SI C'EST UN FILE*/
 	/*enregistrer si on doit effacer ou concatener*/
 	if (booleans->double_left_rafter)
-		data->ls_io.io[2] = ft_strdup("dl");
+		data->ls_io->io[2] = ft_strdup("dl");
 	else if (booleans->simple_left_rafter)
-		data->ls_io.io[2] = ft_strdup("sl");
+		data->ls_io->io[2] = ft_strdup("sl");
 	if (booleans->double_right_rafter)
-		data->ls_io.io[3] = ft_strdup("dr");
+		data->ls_io->io[3] = ft_strdup("dr");
 	else if (booleans->simple_right_rafter)
-		data->ls_io.io[3] = ft_strdup("sr");
+		data->ls_io->io[3] = ft_strdup("sr");
 	/*enregistrer le file en input ou output*/
-	if (data->ls_io.io[2])
-		data->ls_io.io[0] = new_word;
-	if (data->ls_io.io[3])
-		data->ls_io.io[1] = new_word;
+	if (data->ls_io->io[2])
+		data->ls_io->io[0] = new_word;
+	if (data->ls_io->io[3])
+		data->ls_io->io[1] = new_word;
 	/*SI C'EST PAS UN FILE*/
-	if (!data->ls_io.io[2] && !data->ls_io.io[3])
+	if (!data->ls_io->io[2] && !data->ls_io->io[3])
 	{
 		new_token_cmd.token_cmd = new_word; 
 		new_token_cmd.next = NULL; 
-		ft_lstadd_back(&(data->ls_cmds.s_token_cmds), &new_token_cmd);
+		ft_lstadd_back(&(data->ls_cmds->s_token_cmds), &new_token_cmd);
 	}
 }
 
@@ -128,7 +128,7 @@ int save_word(int word_length, char *prompt_line, int *i, t_data *data, t_boolea
 			skip = '\'';
 		}
 		if (prompt_line[index] == '\\' && (prompt_line[index + 1] == '\\' || prompt_line[index + 1] == skip))
-		new_wl--;
+			new_wl--; // CE CAS N'EST PAS A GERER. "echo hello\ wolrd" devrais renvoyer "hello\ world".
 		index++;
 	}
 	new_word = substr_no_quotes(prompt_line, start, new_wl, word_length, skip);

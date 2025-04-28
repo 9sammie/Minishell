@@ -11,10 +11,10 @@ CC			=	cc
 #####################################################
 #					DIRECTORY						#
 #####################################################
-DSRC			=	src
-DOBJ			=	obj
-DHEADER			=	header
-DLIBFT			=	libft
+DIR_SRC			=	src
+DIR_OBJ			=	obj
+DIR_HEADER		=	header
+DIR_LIBFT		=	libft
 
 #####################################################
 #					FLAGS							#
@@ -25,12 +25,12 @@ LFLAGS		=	-lreadline -lncurses
 #####################################################
 #					FILES							#
 #####################################################
-CFILES		=	main.c\
+FILES		=	main.c\
 				
-CHEADERS	=	minishell.h
-SRC			=	$(DSRC)/$(CFILES)
-HEADERS		=	$(DHEADER)/$(CHEADERS)
-OBJ			=	$(CFILES:%.c=$(DOBJ)/%.o)
+HEADERS		=	minishell.h
+SRC			=	$(DIR_SRC)/$(FILES)
+HEADERS		=	$(DIR_HEADER)/$(HEADERS)
+OBJ			=	$(FILES:%.c=$(DIR_OBJ)/%.o)
 
 
 #####################################################
@@ -41,17 +41,17 @@ OBJ			=	$(CFILES:%.c=$(DOBJ)/%.o)
  				libft/printf_err/libftprintf.a\
 
 all :
-	$(MAKE) -C $(DLIBFT)/
+	$(MAKE) -C $(DIR_LIBFT)/
 	$(MAKE) $(NAME)
 
 $(NAME) : $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
-$(DOBJ)/%.o : $(DSRC)/%.c $(HEADERS) Makefile | $(DOBJ)
+$(DIR_OBJ)/%.o : $(DIR_SRC)/%.c $(HEADERS) Makefile | $(DIR_OBJ)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-$(DOBJ):
-	mkdir -p $(DOBJ)
+$(DIR_OBJ):
+	mkdir -p $(DIR_OBJ)
 
 
 re: fclean
@@ -59,8 +59,8 @@ re: fclean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) fclean -C $(DLIBFT)/
+	$(MAKE) fclean -C $(DIR_LIBFT)/
 
 clean :
-	rm -rf $(DOBJ)
-	$(MAKE) clean -C $(DLIBFT)/
+	rm -rf $(DIR_OBJ)
+	$(MAKE) clean -C $(DIR_LIBFT)/

@@ -88,7 +88,7 @@ typedef struct s_boolean
 /*init.c*/
 void	init_back_bool(t_boolean *booleans);
 void	booleans_init(t_boolean *booleans);
-t_data	*data_init(t_data *data, char **env);
+t_data	data_init(t_data *data, char **env);
 /*PARSING---------------------*/
 /*parsing.c*/
 t_cmds	parsing(char *prompt_line, t_data *data);

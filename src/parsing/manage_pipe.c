@@ -5,16 +5,19 @@ static int create_new_node_cmd(t_data *data)
 {
     t_cmds new_cmds;
 
-    ft_lstadd_back(data->ls_cmds, &new_cmds);
+    ft_lstadd_back((t_list**)data->ls_cmds, (t_list*)&new_cmds);
+    return (0);
 }
 
 //termine le node actuel
 //crée un nouveau node
 //met a jour le input et le output suivant (pipe)
-int    manage_pipe(char *prompt_line, int *i, t_boolean *booleans, t_data *data, int *word_length)
+int    manage_pipe(char *prompt_line, int *i, t_is_active *booleans, t_data *data, int *word_length)
 {
     if (booleans->simple_quote || booleans->double_quote)
         return (ALL_OK);
+    (void)prompt_line;
+    (void)i;
     /*A FAIRE save word*/
     if (prompt_line[*i - 1] != ' ')
         save_word(&word_length, &prompt_line, &i, &data, &booleans);

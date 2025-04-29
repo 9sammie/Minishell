@@ -18,7 +18,6 @@ int    manage_pipe(char *prompt_line, int *i, t_is_active *booleans, t_data *dat
         return (ALL_OK);
     (void)prompt_line;
     (void)i;
-    /*A FAIRE save word*/
     if (prompt_line[*i - 1] != ' ')
         save_word(word_length, prompt_line, i, data, booleans);
     if (!data->ls_io->io[1])

@@ -10,13 +10,12 @@ static int  env_init(t_env *ls_env, char **env)
 	i = 0;
 	while (env[i])
 	{
-        printf("1) %s\n", env[i]);
 		new_line_env->env_line = ft_strdup(env[i]);
 		if (!new_line_env->env_line)
 			return (0);
-        printf("2) %s\n", env[i]);
 		ft_lstadd_back((t_list**)&ls_env, (t_list*)new_line_env);
-		i++;
+        new_line_env->next = NULL;
+        i++;
 	}
 	return (1);
 } 

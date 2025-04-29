@@ -111,5 +111,7 @@ int		execution(t_data *data);
 char	*ft_cutstr(char const *s, unsigned int start);
 /*is_space.c*/
 bool	ft_isspace(char c);
+/*print tabs*/
+void	ft_print_tab(t_data *data);
 
 #endif

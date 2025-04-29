@@ -51,12 +51,12 @@ void save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 	else if (booleans->simple_right_rafter)
 		data->ls_io->io[3] = ft_strdup("sr");
 	/*enregistrer le file en input ou output*/
-	if (data->ls_io->io[2])
+	if (data->ls_io->io[2]) //************* */
 		data->ls_io->io[0] = new_word;
-	if (data->ls_io->io[3])
+	if (data->ls_io->io[3])//************* */
 		data->ls_io->io[1] = new_word;
 	/*SI C'EST PAS UN FILE*/
-	if (!data->ls_io->io[2] && !data->ls_io->io[3])
+	if (!data->ls_io->io[2] && !data->ls_io->io[3])//************* *///************* */
 	{
 		new_token_cmd.token_cmd = new_word; 
 		new_token_cmd.next = NULL; 

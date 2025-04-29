@@ -31,6 +31,10 @@ void data_init(t_data *data, char **env)
 	env_init(data->ls_env, env);
     data->ls_io = malloc(sizeof(t_io)); //check fail
     
+	data->ls_io->io[0] = NULL;
+	data->ls_io->io[1] = NULL;
+	data->ls_io->io[2] = NULL;
+	data->ls_io->io[3] = NULL;
 	data->ls_io->next = NULL;
 }
 

@@ -8,7 +8,7 @@ static int  env_init(t_env *ls_env, char **env)
     new_line_env = malloc(sizeof(t_env)); //check fail
     new_line_env->next = NULL;
 	i = 0;
-	while (env[i])
+	while (env[i]) //env[i]
 	{
 		new_line_env->env_line = ft_strdup(env[i]);
 		if (!new_line_env->env_line)
@@ -27,7 +27,7 @@ void data_init(t_data *data, char **env)
     data->ls_cmds->s_token_cmds = NULL;
 	data->ls_cmds->index = 0;
 	data->ls_cmds->next = NULL;
-    data->ls_env = malloc(sizeof(t_env)); //check fail
+    data->ls_env = NULL;//malloc(sizeof(t_env)); //check fail
 	env_init(data->ls_env, env);
     data->ls_io = malloc(sizeof(t_io)); //check fail
     

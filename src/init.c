@@ -11,13 +11,11 @@ static int  env_init(t_env **ls_env, char **env)
 	i = 0;
 	while (env[i]) //env[i]
 	{
-        new_node = malloc(sizeof(t_env)); //check fail
-		new_node->env_line = ft_strdup(env[i]);
-		if (!new_node->env_line)
+		new_line_env->env_line = ft_strdup(env[i]);
+		if (!new_line_env->env_line)
 			return (0);
-        new_node->next = NULL;
-		ft_lstadd_back((t_list**)ls_env, (t_list*)new_node);
-        new_node = new_node->next;
+		ft_lstadd_back((t_list**)&ls_env, (t_list*)new_line_env);
+        new_line_env->next = NULL;
         i++;
 	}
     // new_node->next = NULL;

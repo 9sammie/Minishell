@@ -33,7 +33,7 @@ static int  exec_cmd(t_data *data)
 
 int execution(t_data *data)
 {
-	while (data->ls_cmds->next)
+	while (data->ls_cmds)
 	{
 		exec_cmd(data);
 		data->ls_cmds = data->ls_cmds->next;

@@ -26,7 +26,7 @@ void	ft_print_tab(t_data *data)
 
 	i = 1;
 	printf("env tab :\n\n");
-	while (data->ls_env->next != NULL)
+	while (data->ls_env)
 	{
 		printf("%d) %s\n", i, data->ls_env->env_line);
 		data->ls_env = data->ls_env->next; 

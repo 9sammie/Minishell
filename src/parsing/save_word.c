@@ -139,6 +139,7 @@ int save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_is_ac
 	if (booleans->dollar)
 		new_word = replace_variable(new_word, data);
 	/*enregistrer new_word dans la structure file ou cmd*/
+	printf("mot actuel : %s\n", new_word);
 	save_word_in_tab(new_word, data, booleans);
     init_back_bool(booleans);
 	*word_length = 0; //Remettre word_len a 0 pour le prochain mot.

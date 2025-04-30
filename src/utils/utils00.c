@@ -36,7 +36,8 @@ void	ft_print_tab(t_data *data)
 	i = 1;
 	while (data->ls_cmds != NULL)
 	{
-		printf("%d) io : %s %s, cmds :", i, data->ls_cmds->io->io[0], data->ls_cmds->io->io[1]);
+		//printf("%d) io : %s %s, cmds :", i, data->ls_cmds->io->io[0], data->ls_cmds->io->io[1]);
+		printf("%d) cmds :", i);
 		while (data->ls_cmds->s_token_cmds != NULL)
 		{
 			printf(" %s", data->ls_cmds->s_token_cmds->token_cmd);

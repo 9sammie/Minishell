@@ -5,18 +5,21 @@ static int  env_init(t_env *ls_env, char **env)
 	unsigned int	i;
 	t_env			*new_line_env;	
 
-    new_line_env = malloc(sizeof(t_env)); //check fail
+    new_line_env = ls_env;
+    // new_line_env->env_line = ls_env->env_line;
     new_line_env->next = NULL;
 	i = 0;
-	while (env[i])
+	while (env[i]) //env[i]
 	{
 		new_line_env->env_line = ft_strdup(env[i]);
+        new_line_env->next = NULL;
 		if (!new_line_env->env_line)
 			return (0);
 		ft_lstadd_back((t_list**)&ls_env, (t_list*)new_line_env);
-        new_line_env->next = NULL;
+        new_line_env = new_line_env->next;
         i++;
 	}
+    new_line_env->next = NULL;
 	return (1);
 } 
 
@@ -27,14 +30,14 @@ void data_init(t_data *data, char **env)
     data->ls_cmds->s_token_cmds = NULL;
 	data->ls_cmds->index = 0;
 	data->ls_cmds->next = NULL;
-    data->ls_env = malloc(sizeof(t_env)); //check fail
+    data->ls_env = malloc(sizeof(t_env));//data->ls_env = NULL;//malloc(sizeof(t_env)); //check fail
 	env_init(data->ls_env, env);
+    // printf("ENVLINE : %s\n", data->ls_env->env_line);
     data->ls_io = malloc(sizeof(t_io)); //check fail
-    
-	data->ls_io->io[0] = NULL;
-	data->ls_io->io[1] = NULL;
-	data->ls_io->io[2] = NULL;
-	data->ls_io->io[3] = NULL;
+    data->ls_io->io[0] = NULL;
+    data->ls_io->io[1] = NULL;
+    data->ls_io->io[2] = NULL;
+    data->ls_io->io[3] = NULL;
 	data->ls_io->next = NULL;
 }
 

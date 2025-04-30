@@ -32,7 +32,7 @@ void data_init(t_data *data, char **env)
 	data->ls_cmds->index = 0;
 	data->ls_cmds->next = NULL;
     data->ls_env = NULL;//malloc(sizeof(t_env)); //check fail
-	env_init(data->ls_env, env);
+	env_init(&data->ls_env, env);
     // printf("ENVLINE : %s\n", data->ls_env->env_line);
     data->ls_io = malloc(sizeof(t_io)); //check fail
     data->ls_io->io[0] = NULL;

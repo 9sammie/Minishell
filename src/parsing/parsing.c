@@ -36,5 +36,6 @@ void parsing(char *prompt_line, t_data *data)
             word_length++;
         i++;
     }
+    printf("(parsing)word length = %d\n", word_length);
     save_word(&word_length, prompt_line, &i, data, &booleans); //save le dernier mot
 }

@@ -51,12 +51,12 @@ void save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 	else if (booleans->simple_right_rafter)
 		data->ls_io->io[3] = ft_strdup("sr");
 	/*enregistrer le file en input ou output*/
-	if (data->ls_io->io[2]) //************* */
-		data->ls_io->io[0] = new_word;
-	if (data->ls_io->io[3])//************* */
+	if (data->ls_io->io[2])
+        data->ls_io->io[0] = new_word;
+	if (data->ls_io->io[3])
 		data->ls_io->io[1] = new_word;
 	/*SI C'EST PAS UN FILE*/
-	if (!data->ls_io->io[2] && !data->ls_io->io[3])//************* *///************* */
+	if (!data->ls_io->io[2] && !data->ls_io->io[3])
 	{
 		new_token_cmd.token_cmd = new_word; 
 		new_token_cmd.next = NULL; 
@@ -139,7 +139,7 @@ int save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_is_ac
 	if (booleans->dollar)
 		new_word = replace_variable(new_word, data);
 	/*enregistrer new_word dans la structure file ou cmd*/
-	printf("mot actuel : %s\n", new_word);
+	printf("(save_word)mot actuel : %s\n", new_word);
 	save_word_in_tab(new_word, data, booleans);
     init_back_bool(booleans);
 	*word_length = 0; //Remettre word_len a 0 pour le prochain mot.

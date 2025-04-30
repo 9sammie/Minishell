@@ -10,7 +10,7 @@ int main(int ac, char **av, char **env)
     (void)ac;
     (void)av;
     data_init(&data, env);
-    ft_print_tab(&data);
+    // ft_print_env(&data);
 	while (1) // boucle qui maintient le programme ouvert
 	{
         prompt_line = readline("minishell > "); //recupere la ligne dans le prompt
@@ -24,6 +24,7 @@ int main(int ac, char **av, char **env)
                 // free_all(prompt_line);
 				return (ERR_CREAT); 
 			}
+            ft_print_tab(&data);
             // data = data_start;
             // if (execution(&data) == -1)
             // {

@@ -20,9 +20,10 @@ char	*ft_cutstr(char const *s, unsigned int start)
 	return (result);
 }
 
-void	ft_print_tab(t_data *data)
+
+void    ft_print_env(t_data *data)
 {
-	int i;
+    int i;
 
 	i = 1;
 	printf("env tab :\n\n");
@@ -32,18 +33,22 @@ void	ft_print_tab(t_data *data)
 		data->ls_env = data->ls_env->next; 
 		i++;
 	}
+}
+
+void	ft_print_tab(t_data *data)
+{
+	int i;
+
 	printf("\ncmds tab :\n\n");
 	i = 1;
 	while (data->ls_cmds != NULL)
 	{
 		//printf("%d) io : %s %s, cmds :", i, data->ls_cmds->io->io[0], data->ls_cmds->io->io[1]);
-		printf("%d) cmds :", i);
-		while (data->ls_cmds->s_token_cmds != NULL)
-		{
-			printf(" %s", data->ls_cmds->s_token_cmds->token_cmd);
-			data->ls_cmds->s_token_cmds = data->ls_cmds->s_token_cmds->next;
-		}
-		printf("\n");
+		// while (data->ls_cmds->s_token_cmds != NULL)
+		// {
+		// 	// printf("cmd %d : %s\n", i,  data->ls_cmds->s_token_cmds->token_cmd);
+		// 	data->ls_cmds->s_token_cmds = data->ls_cmds->s_token_cmds->next;
+		// }
 		data->ls_cmds = data->ls_cmds->next; 
 		i++;
 	}

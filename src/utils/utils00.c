@@ -20,6 +20,11 @@ char	*ft_cutstr(char const *s, unsigned int start)
 	return (result);
 }
 
+int free_all(t_data *data)
+{
+    return (0);
+}
+
 
 void    ft_print_env(t_data *data)
 {

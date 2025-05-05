@@ -36,34 +36,36 @@ static char	*substr_no_quotes(char *prompt_line, int start, int new_len, int len
 	return (result);
 }
 
-void save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
+int save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 {
 	t_token_cmds    *new_token_cmd;
 
-	new_token_cmd = malloc(sizeof(t_token_cmds)); //check fail
-
+	new_token_cmd = malloc(sizeof(t_token_cmds));
+    if (!new_token_cmd)
+        return (0);
 	/*SI C'EST UN FILE*/
 	/*enregistrer si on doit effacer ou concatener*/
 	if (booleans->double_left_rafter)
-		data->ls_io->io[2] = ft_strdup("dl");
+		data->ls_io->rafters[0] = DOUBLE_LEFT;
 	else if (booleans->simple_left_rafter)
-		data->ls_io->io[2] = ft_strdup("sl");
+		data->ls_io->rafters[0] = SIMPLE_LEFT;
 	if (booleans->double_right_rafter)
-		data->ls_io->io[3] = ft_strdup("dr");
+		data->ls_io->rafters[1] = DOUBLE_RIGHT;
 	else if (booleans->simple_right_rafter)
-		data->ls_io->io[3] = ft_strdup("sr");
+		data->ls_io->rafters[1] = SIMPLE_RIGHT;
 	/*enregistrer le file en input ou output*/
-	if (data->ls_io->io[2])
+	if (data->ls_io->rafters[0] != NO_RAFTERS)
 		data->ls_io->io[0] = new_word;
-	if (data->ls_io->io[3])
+	if (data->ls_io->rafters[1] != NO_RAFTERS)
 		data->ls_io->io[1] = new_word;
 	/*SI C'EST PAS UN FILE*/
-	if (!data->ls_io->io[2] && !data->ls_io->io[3])
+	if (data->ls_io->rafters[0] == NO_RAFTERS && data->ls_io->rafters[1] == NO_RAFTERS)
 	{
 		new_token_cmd->token_cmd = new_word; 
 		new_token_cmd->next = NULL; 
 		ft_lstadd_back((t_list**)&data->ls_cmds->s_token_cmds, (t_list*)new_token_cmd);
 	}
+    return (1);
 }
 
 

@@ -41,19 +41,20 @@ typedef enum e_error
 
 typedef enum e_rafter
 {
-    SIMPLE_LEFT,
-    DOUBLE_LEFT,
-    SIMPLE_RIGT,
-    DOUBLE_RIGHT
+	NO_RAFTERS,
+	SIMPLE_LEFT,
+	DOUBLE_LEFT,
+	SIMPLE_RIGHT,
+	DOUBLE_RIGHT
 } t_rafter;
 
 typedef struct s_io
 {
-	char	*io[4];
-	// char	*io[2];
-    // int     rafters[2];
-    // bool    pipe_input;
-    // bool    pipe_output;
+	// char	*io[4];
+	char	*io[2];
+	int     rafters[2];
+	bool    pipe_input;
+	bool    pipe_output;
 	t_io	*next;
 }				t_io;
 
@@ -98,7 +99,7 @@ typedef struct s_is_active
 /*init.c*/
 void	init_back_bool(t_is_active *booleans);
 void	booleans_init(t_is_active *booleans);
-void	data_init(t_data *data, char **env);
+int	data_init(t_data *data, char **env);
 /*PARSING---------------------*/
 /*parsing.c*/
 void	parsing(char *prompt_line, t_data *data);

@@ -34,13 +34,12 @@ int	var_len(char *s)
 	{
 		i++;
 	}
-	i++; // pour prendre en compte le '='
+	i++; //pour le '='
 	return (i);
 }
 
 int	exec_echo(t_data *data)
 {
-	//Check s'il faut un autre pointeur sur token.
 	int		i;
 	int		varlen;
 	bool	option;

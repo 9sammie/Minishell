@@ -29,13 +29,11 @@ void data_init(t_data *data, char **env)
     
     data->ls_cmds = malloc(sizeof(t_cmds)); //check fail
     data->ls_cmds->s_token_cmds = NULL;
-	data->ls_cmds->index = 0;
 	data->ls_cmds->next = NULL;
     data->ls_env = NULL;//malloc(sizeof(t_env)); //check fail
 	env_init(&data->ls_env, env);
     data->ls_io = malloc(sizeof(t_io)); //check fail  
-    data->ls_io->io[0] = NULL;// ft_strdup("hello");
-    // printf("io[0] = %s\n", data->ls_io->io[0]);
+    data->ls_io->io[0] = NULL;
     data->ls_io->io[1] = NULL;
     data->ls_io->io[2] = NULL;
     data->ls_io->io[3] = NULL;

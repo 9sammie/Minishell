@@ -39,9 +39,21 @@ typedef enum e_error
 	ERR_MALLOC
 }	t_error;
 
+typedef enum e_rafter
+{
+    SIMPLE_LEFT,
+    DOUBLE_LEFT,
+    SIMPLE_RIGT,
+    DOUBLE_RIGHT
+} t_rafter;
+
 typedef struct s_io
 {
 	char	*io[4];
+	// char	*io[2];
+    // int     rafters[2];
+    // bool    pipe_input;
+    // bool    pipe_output;
 	t_io	*next;
 }				t_io;
 
@@ -53,7 +65,6 @@ typedef struct s_token_cmds
 
 typedef struct s_cmds
 {
-	int				index; //useless
 	t_token_cmds	*s_token_cmds;
 	t_io			*io;
 	t_cmds			*next;
@@ -113,5 +124,6 @@ char	*ft_cutstr(char const *s, unsigned int start);
 bool	ft_isspace(char c);
 /*print tabs*/
 void	ft_print_tab(t_data *data);
+void    ft_print_env(t_data *data);
 
 #endif

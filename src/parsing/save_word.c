@@ -10,16 +10,16 @@ static char	*substr_no_quotes(char *prompt_line, int start, int new_len, int len
 { //LA LEN EST PAS TOUT A FAIT BONNE POUR PARCOURIR PROMPTLINE
 	char	*result;
 	int	i;
-    int p_line_len;
+	int p_line_len;
 
-    p_line_len = (int)ft_strlen(prompt_line);
+	p_line_len = (int)ft_strlen(prompt_line);
 	if (start > p_line_len)
-        len = 0;
+		len = 0;
 	else if (len > (p_line_len - start))
-        len = p_line_len - start;
+		len = p_line_len - start;
 	result = malloc(new_len + 1);
 	if (!result)
-        return (NULL);
+		return (NULL);
 	i = 0;
 	while (i < len && (start + i < p_line_len)) // a optimiser
 	{
@@ -38,7 +38,9 @@ static char	*substr_no_quotes(char *prompt_line, int start, int new_len, int len
 
 void save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 {
-	t_token_cmds    new_token_cmd;
+	t_token_cmds    *new_token_cmd;
+
+	new_token_cmd = malloc(sizeof(t_token_cmds)); //check fail
 
 	/*SI C'EST UN FILE*/
 	/*enregistrer si on doit effacer ou concatener*/
@@ -51,16 +53,16 @@ void save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 	else if (booleans->simple_right_rafter)
 		data->ls_io->io[3] = ft_strdup("sr");
 	/*enregistrer le file en input ou output*/
-	if (data->ls_io->io[2]) //************* */
+	if (data->ls_io->io[2])
 		data->ls_io->io[0] = new_word;
-	if (data->ls_io->io[3])//************* */
+	if (data->ls_io->io[3])
 		data->ls_io->io[1] = new_word;
 	/*SI C'EST PAS UN FILE*/
-	if (!data->ls_io->io[2] && !data->ls_io->io[3])//************* *///************* */
+	if (!data->ls_io->io[2] && !data->ls_io->io[3])
 	{
-		new_token_cmd.token_cmd = new_word; 
-		new_token_cmd.next = NULL; 
-		ft_lstadd_back((t_list**)&data->ls_cmds->s_token_cmds, (t_list*)&new_token_cmd);
+		new_token_cmd->token_cmd = new_word; 
+		new_token_cmd->next = NULL; 
+		ft_lstadd_back((t_list**)&data->ls_cmds->s_token_cmds, (t_list*)new_token_cmd);
 	}
 }
 
@@ -109,6 +111,9 @@ int save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_is_ac
 	skip = '\0';
 	index = *i - *word_length;
 	start = index;
+	printf("(save word) word length = %d\n", *word_length);
+	if (*word_length == 0)
+		return (0);
 	while (index <= *i)
 	{
 		if (prompt_line[index] == '\"' && !booleans->simple_quote)
@@ -139,9 +144,9 @@ int save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_is_ac
 	if (booleans->dollar)
 		new_word = replace_variable(new_word, data);
 	/*enregistrer new_word dans la structure file ou cmd*/
-	printf("mot actuel : %s\n", new_word);
 	save_word_in_tab(new_word, data, booleans);
-    init_back_bool(booleans);
+	printf("(save_word)mot actuel rangé : %s\n", data->ls_cmds->s_token_cmds->token_cmd);
+	init_back_bool(booleans);
 	*word_length = 0; //Remettre word_len a 0 pour le prochain mot.
 	return (0);
 }

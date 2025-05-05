@@ -20,9 +20,10 @@ char	*ft_cutstr(char const *s, unsigned int start)
 	return (result);
 }
 
-void	ft_print_tab(t_data *data)
+
+void    ft_print_env(t_data *data)
 {
-	int i;
+    int i;
 
 	i = 1;
 	printf("env tab :\n\n");
@@ -32,27 +33,36 @@ void	ft_print_tab(t_data *data)
 		data->ls_env = data->ls_env->next; 
 		i++;
 	}
+}
+
+void	ft_print_tab(t_data *data)
+{
+	int i;
+    t_data *current;
+
+    current = data;
 	printf("\ncmds tab :\n\n");
-	i = 1;
-	while (data->ls_cmds != NULL)
+    int j = 1;
+	while (current->ls_cmds != NULL)
 	{
-		//printf("%d) io : %s %s, cmds :", i, data->ls_cmds->io->io[0], data->ls_cmds->io->io[1]);
-		printf("%d) cmds :", i);
-		while (data->ls_cmds->s_token_cmds != NULL)
+        i = 1;
+		// printf("%d) io : %s %s, cmds :", i, data->ls_cmds->io->io[0], data->ls_cmds->io->io[1]);
+		while (current->ls_cmds->s_token_cmds != NULL)
 		{
-			printf(" %s", data->ls_cmds->s_token_cmds->token_cmd);
-			data->ls_cmds->s_token_cmds = data->ls_cmds->s_token_cmds->next;
+			printf("node : %d, token : %d : %s\n", j, i,  current->ls_cmds->s_token_cmds->token_cmd);
+			current->ls_cmds->s_token_cmds = current->ls_cmds->s_token_cmds->next;
+            i++;
 		}
-		printf("\n");
-		data->ls_cmds = data->ls_cmds->next; 
-		i++;
+        j++;
+        printf("--------------------\n");
+		current->ls_cmds = current->ls_cmds->next; 
 	}
 	printf("\nio tab :\n\n");
 	i = 1;
-	while (data->ls_io != NULL)
+	while (current->ls_io != NULL)
 	{
-		printf("%d) input %s output %s nature i %s nature o %s\n\n", i, data->ls_io->io[0], data->ls_io->io[1], data->ls_io->io[2], data->ls_io->io[3]);
-		data->ls_io = data->ls_io->next; 
+		printf("%d) input %s output %s nature i %s nature o %s\n\n", i, current->ls_io->io[0], data->ls_io->io[1], data->ls_io->io[2], data->ls_io->io[3]);
+		current->ls_io = current->ls_io->next; 
 		i++;
 	}
 }

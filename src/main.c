@@ -5,15 +5,17 @@ int main(int ac, char **av, char **env)
 	char    *prompt_line;
 	t_data  *data;
 	t_data  *data_head;
+    t_cmds  *test;
 
 	(void)ac;
 	(void)av;
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return(ALL_OK);
-	data_head = data;
-	if (!data_init(data, env))
-		return (free_all(data_head));
+    if (!data_init(data, env))
+		return (free_all(data));
+    data_head = data;
+    test = data->ls_cmds;
 	while (1)
 	{
 		prompt_line = readline("minishell > ");
@@ -24,7 +26,7 @@ int main(int ac, char **av, char **env)
 			if (!data->ls_cmds->s_token_cmds) 
 				return (free_all(data_head));
 			printf("(main)mot actuel rangé : %s\n", data->ls_cmds->s_token_cmds->token_cmd);
-			ft_print_tab(data_head);
+			ft_print_tab(test);
 			// data = data_start;
 			// if (execution(&data) == -1)
 			// {
@@ -34,6 +36,5 @@ int main(int ac, char **av, char **env)
 			// }
 		}
 	}
-	ft_print_tab(data_head);
 	return (ALL_OK);
 }

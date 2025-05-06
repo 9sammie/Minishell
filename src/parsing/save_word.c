@@ -41,8 +41,8 @@ int save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 	t_token_cmds    *new_token_cmd;
 
 	new_token_cmd = malloc(sizeof(t_token_cmds));
-    if (!new_token_cmd)
-        return (0);
+	if (!new_token_cmd)
+		return (0);
 	/*SI C'EST UN FILE*/
 	/*enregistrer si on doit effacer ou concatener*/
 	if (booleans->double_left_rafter)
@@ -65,7 +65,7 @@ int save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 		new_token_cmd->next = NULL; 
 		ft_lstadd_back((t_list**)&data->ls_cmds->s_token_cmds, (t_list*)new_token_cmd);
 	}
-    return (1);
+	return (1);
 }
 
 

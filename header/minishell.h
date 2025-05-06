@@ -121,9 +121,9 @@ int		execution(t_data *data);
 /*UTILS-----------------------------*/
 /*utils/utils00.c*/
 char	*ft_cutstr(char const *s, unsigned int start);
-/*is_space.c*/
+int free_all(t_data *data);
+/*ft_isspace.c*/
 bool	ft_isspace(char c);
-/*print tabs*/
 void	ft_print_tab(t_data *data);
 void    ft_print_env(t_data *data);
 

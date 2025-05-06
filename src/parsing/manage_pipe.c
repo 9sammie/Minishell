@@ -1,12 +1,14 @@
 #include "../../header/minishell.h"
 
-static int create_new_node_cmd(t_cmds *ls_cmds)
+static int create_new_node_cmd(t_cmds **ls_cmds)
 {
 	t_cmds *new_cmds;
 
 	new_cmds = malloc(sizeof(t_cmds)); //check fail
-	ft_lstadd_back((t_list**)&ls_cmds, (t_list*)new_cmds);
-	ls_cmds = (t_cmds*)ft_lstlast((t_list*)ls_cmds);
+	new_cmds->s_token_cmds->token_cmd = NULL;
+	new_cmds->s_token_cmds->next = NULL;
+    new_cmds->next = NULL;
+	ft_lstadd_back((t_list**)ls_cmds, (t_list*)new_cmds);
 	return (0);
 }
 
@@ -43,8 +45,9 @@ int    manage_pipe(char *prompt_line, int *i, t_is_active *booleans, t_data *dat
 		/*fail*/
 		return (ERR_PIPE);
 	}
-	create_new_node_cmd(data->ls_cmds); //nous fait passer au node cmd suivant
+	create_new_node_cmd(&data->ls_cmds); //nous fait passer au node cmd suivant
 	// data->ls_cmds = data->ls_cmds->next;
+	printf("\n%s\n\n", data->ls_cmds->s_token_cmds->token_cmd);
 	/*A FAIRE associer le node cmd au node io*/
 	*word_length = 0; // pas sur
 	return (ALL_OK);

@@ -36,8 +36,8 @@ void parsing(char *prompt_line, t_data *data)
 			word_length++;
 		i++;
 	}
-	printf("(parsing)word length = %d\n", word_length);
+	// printf("(parsing)word length = %d\n", word_length);
 	save_word(&word_length, prompt_line, &i, data, &booleans); //save le dernier mot
-	printf("(parsing)mot actuel rangé : %s\n", data->ls_cmds->s_token_cmds->token_cmd);
+	// printf("(parsing)mot actuel rangé : %s\n", data->ls_cmds->s_token_cmds->token_cmd);
 
 }

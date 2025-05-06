@@ -26,7 +26,7 @@ int main(int ac, char **av, char **env)
                 // free_all(prompt_line);
 				return (ERR_CREAT); 
 			}
-            printf("(main)mot actuel rangé : %s\n", data->ls_cmds->s_token_cmds->token_cmd);
+            // printf("(main)mot actuel rangé : %s\n", data->ls_cmds->s_token_cmds->token_cmd);
             ft_print_tab(data_head);
             // data = data_start;
             // if (execution(&data) == -1)

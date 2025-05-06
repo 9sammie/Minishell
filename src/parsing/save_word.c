@@ -111,7 +111,7 @@ int save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_is_ac
 	skip = '\0';
 	index = *i - *word_length;
 	start = index;
-	printf("(save word) word length = %d\n", *word_length);
+	// printf("(save word) word length = %d\n", *word_length);
 	if (*word_length == 0)
 		return (0);
 	while (index <= *i)
@@ -145,7 +145,7 @@ int save_word(int *word_length, char *prompt_line, int *i, t_data *data, t_is_ac
 		new_word = replace_variable(new_word, data);
 	/*enregistrer new_word dans la structure file ou cmd*/
 	save_word_in_tab(new_word, data, booleans);
-	printf("(save_word)mot actuel rangé : %s\n", data->ls_cmds->s_token_cmds->token_cmd);
+	// printf("(save_word)mot actuel rangé : %s\n", data->ls_cmds->s_token_cmds->token_cmd);
 	init_back_bool(booleans);
 	*word_length = 0; //Remettre word_len a 0 pour le prochain mot.
 	return (0);

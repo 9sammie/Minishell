@@ -44,7 +44,7 @@ int save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 	if (!new_token_cmd)
 		return (0);
 	/*SI C'EST UN FILE*/
-	/*enregistrer si on doit effacer ou concatener*/
+	/*enregistrer si on doit effacer ou concatener ou ouvrir un here_doc*/
 	if (booleans->double_left_rafter)
 		data->ls_io->rafters[0] = DOUBLE_LEFT;
 	else if (booleans->simple_left_rafter)
@@ -61,8 +61,10 @@ int save_word_in_tab(char *new_word, t_data *data, t_is_active *booleans)
 	/*SI C'EST PAS UN FILE*/
 	if (data->ls_io->rafters[0] == NO_RAFTERS && data->ls_io->rafters[1] == NO_RAFTERS)
 	{
+		printf("(save word)hello\n");
 		new_token_cmd->token_cmd = new_word; 
-		new_token_cmd->next = NULL; 
+		new_token_cmd->next = NULL;
+		data->ls_cmds = (t_cmds*)ft_lstlast((t_list*)data->ls_cmds); //
 		ft_lstadd_back((t_list**)&data->ls_cmds->s_token_cmds, (t_list*)new_token_cmd);
 	}
 	return (1);

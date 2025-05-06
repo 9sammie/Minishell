@@ -67,8 +67,8 @@ typedef struct s_token_cmds
 typedef struct s_cmds
 {
 	t_token_cmds	*s_token_cmds;
-	t_io			*io;
 	t_cmds			*next;
+	t_io			*io;
 }					t_cmds;
 
 typedef struct s_env
@@ -121,10 +121,16 @@ int		execution(t_data *data);
 /*UTILS-----------------------------*/
 /*utils/utils00.c*/
 char	*ft_cutstr(char const *s, unsigned int start);
+void	ft_cmdadd_back(t_cmds **lst, t_cmds *new);
+t_cmds	*ft_cmdlast(t_cmds *lst);
 int free_all(t_data *data);
 /*ft_isspace.c*/
 bool	ft_isspace(char c);
-void	ft_print_tab(t_data *data);
+void	ft_print_tab(t_cmds *data);
 void    ft_print_env(t_data *data);
 
 #endif
+
+
+
+

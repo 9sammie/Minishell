@@ -41,25 +41,53 @@ void    ft_print_env(t_data *data)
 	}
 }
 
-void	ft_print_tab(t_data *data)
+void	ft_print_tab(t_cmds *data)
 {
 	int i;
-    t_data *current;
+    t_cmds *current;
 
     current = data;
 	printf("\ncmds tab :\n\n");
     int j = 1;
-	while (current->ls_cmds != NULL)
+	while (current != NULL)
 	{
         i = 1;
-		while (current->ls_cmds->s_token_cmds != NULL)
+		while (current->s_token_cmds != NULL)
 		{
-			printf("node : %d, token : %d : %s\n", j, i,  current->ls_cmds->s_token_cmds->token_cmd);
-			current->ls_cmds->s_token_cmds = current->ls_cmds->s_token_cmds->next;
+			printf("node : %d, token : %d : %s\n", j, i,  current->s_token_cmds->token_cmd);
+			current->s_token_cmds = current->s_token_cmds->next;
             i++;
 		}
         j++;
         printf("--------------------\n");
-		current->ls_cmds = current->ls_cmds->next; 
+		current = current->next; 
 	}
+}
+
+
+void	ft_cmdadd_back(t_cmds **lst, t_cmds *new)
+{
+	t_cmds	*current;
+
+	if (!lst)
+		return ;
+	current = ft_cmdlast(*lst);
+	if (current)
+		current->next = new;
+	else
+		*lst = new;
+}
+
+t_cmds	*ft_cmdlast(t_cmds *lst)
+{
+    t_cmds  *last;
+
+	if (!lst)
+		return (NULL);
+    last = lst;
+	while (last->next)
+	{
+		last = last->next;
+	}
+	return (last);
 }

@@ -50,7 +50,6 @@ typedef enum e_rafter
 
 typedef struct s_io
 {
-	// char	*io[4];
 	char	*io[2];
 	int     rafters[2];
 	bool    pipe_input;

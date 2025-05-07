@@ -41,12 +41,12 @@ void    ft_print_env(t_data *data)
 	}
 }
 
-void	ft_print_tab(t_cmds *data)
+void	ft_print_tab(t_cmds *ls_cmd)
 {
 	int i;
     t_cmds *current;
 
-    current = data;
+    current = ls_cmd;
 	printf("\ncmds tab :\n\n");
     int j = 1;
 	while (current != NULL)
